@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    networks:
+      - my_network
+    container_name: my_node_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    depends_on:
+      mongo:
+        condition: service_healthy  # Ждём, пока Mongo будет готова
+    environment:
+      - NODE_ENV=development
+    command: yarn dev
+
+  mongo:
+    image: mongo
+    networks:
+      - my_network
+    container_name: my_mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:  # Проверяем, что Mongo жива
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo_data:
+
+networks:
+  my_network:

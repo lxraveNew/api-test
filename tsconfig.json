@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "module": "CommonJS",
+    "target": "ES2022",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "types": ["node", "express", "qs"],
+    "outDir": "./dist",
+    "moduleResolution": "node",
+  },
+  "include": [
+    "src/**/*.ts",
+  ]
+}
