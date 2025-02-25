@@ -6,12 +6,12 @@
     "module": "CommonJS",
     "target": "ES2022",
     "rootDir": "src",
-    "baseUrl": ".",
+    "baseUrl": "..",
     "types": ["node", "express", "qs"],
-    "outDir": "./dist",
-    "moduleResolution": "node",
+    "outDir": "../dist",
+    "moduleResolution": "node"
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*.ts"
   ]
 }

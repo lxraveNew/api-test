@@ -1,16 +1,17 @@
 version: "3.9"
 
 services:
-  app:
-    build: .
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
     networks:
       - my_network
     container_name: my_node_app
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/app/src
-      - /app/node_modules
+      - ./api/src:/api/src
     depends_on:
       mongo:
         condition: service_healthy  # Ждём, пока Mongo будет готова
